@@ -17,16 +17,10 @@ from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 X = pd.read_csv('combined_world_happiness_report.csv')
 
 # Funktion zum Laden des Modells
-    try:
-        with open('modele_rfr.pkl', 'rb') as fichier_modele:
-            modele = pickle.load(fichier_modele)
-        return modele
-    except (pickle.UnpicklingError, AttributeError, EOFError, ImportError, IndexError) as e:
-        st.error(f"An error occurred while loading the model: {e}")
-        return None
-    except Exception as e:
-        st.error(f"An unexpected error occurred: {e}")
-        return None
+def charger_modele():
+ with open('modele_rfr.pkl', 'rb') as fichier_modele:
+        modele = pickle.load(fichier_modele)
+    return modele
 # Daten für die Heatmap laden
 df1 = pd.read_csv('combined_world_happiness_report.csv')
 
