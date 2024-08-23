@@ -1,5 +1,4 @@
 import streamlit as st
-import pickle
 import pandas as pd
 import numpy as np
 import plotly.express as px
@@ -20,16 +19,16 @@ X = pd.read_csv('combined_world_happiness_report.csv')
 
 # Funktion zum Laden des Modells
 # Path to the model file
-model_path = '/mnt/data/modele_rfr.pkl'
+from joblib import dump
 
-# Load the model using the new function
-modele = load_model(model_path)
+# Assuming `model` is your trained model
+dump(model, 'model.joblib')
 
-# Check if the model loaded successfully
-if modele is None:
-    st.error("The model could not be loaded. Please check the logs for more details.")
-else:
-    st.success("Model loaded successfully!")
+from joblib import load
+
+# Load the model
+model = load('model.joblib')
+
 # Daten für die Heatmap laden
 df1 = pd.read_csv('combined_world_happiness_report.csv')
 
