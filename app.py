@@ -19,12 +19,7 @@ X = pd.read_csv('combined_world_happiness_report.csv')
 # Funktion zum Laden des Modells
 def charger_modele():
     with open('modele_rfr.pkl', 'rb') as fichier_modele:
-        try:
         modele = joblib.load(fichier_modele)
-    except FileNotFoundError:
-        st.warning("Model file not found. Using a default model.")
-        modele = RandomForestRegressor()
-    
     return modele
 
 # Daten für die Heatmap laden
